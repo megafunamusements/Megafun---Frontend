@@ -2,6 +2,7 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'res.cloudinary.com' },
       { protocol: 'https', hostname: 'productimages.withfloats.com' },
@@ -9,11 +10,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'bizimages.withfloats.com' },
       { protocol: 'https', hostname: 'backgroundimages.withfloats.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
-      // Render backend static images
       { protocol: 'https', hostname: 'megafun-api.onrender.com' },
-      // Any onrender.com subdomain
       { protocol: 'https', hostname: '*.onrender.com' },
-      // Local dev
       { protocol: 'http', hostname: 'localhost', port: '8000' },
     ],
   },
