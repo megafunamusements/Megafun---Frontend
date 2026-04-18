@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
@@ -9,9 +9,14 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'bizimages.withfloats.com' },
       { protocol: 'https', hostname: 'backgroundimages.withfloats.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
-      { protocol: 'http', hostname: 'localhost', port: '8000', pathname: '/static/**' },
+      // Render backend static images
+      { protocol: 'https', hostname: 'megafun-api.onrender.com' },
+      // Any onrender.com subdomain
+      { protocol: 'https', hostname: '*.onrender.com' },
+      // Local dev
+      { protocol: 'http', hostname: 'localhost', port: '8000' },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
