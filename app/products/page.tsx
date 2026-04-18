@@ -1,5 +1,6 @@
 import { productService } from '@/lib/services/productService'
 import { Product } from '@/lib/api'
+import { resolveImageUrl } from '@/lib/api'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -42,7 +43,7 @@ export default async function ProductsPage() {
                   className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-blue-400 transition-all hover:-translate-y-1 hover:shadow-xl shadow-sm">
                   <div className="relative h-56 w-full overflow-hidden bg-gray-100">
                     {p.image_url ? (
-                      <Image src={p.image_url} alt={p.name} fill
+                      <Image src={resolveImageUrl(p.image_url)} alt={p.name} fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-5xl">🎭</div>

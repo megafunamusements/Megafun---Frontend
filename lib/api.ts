@@ -1,12 +1,24 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000'
 
 export async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE_URL}${path}`, {
+  // Ensure trailing slash to avoid 307 redirects from FastAPI
+  const normalizedPath = path.endsWith('/') ? path : `${path}/`
+  const res = await fetch(`${BASE_URL}${normalizedPath}`, {
     headers: { 'Content-Type': 'application/json' },
+    redirect: 'follow',
     ...options,
   })
   if (!res.ok) throw new Error(`API error: ${res.status}`)
   return res.json()
+}
+
+// Helper to fix localhost image URLs in production
+export function resolveImageUrl(url: string): string {
+  if (!url) return ''
+  if (url.startsWith('http://localhost:8000') || url.startsWith('http://localhost')) {
+    return url.replace(/^http:\/\/localhost:\d+/, BASE_URL)
+  }
+  return url
 }
 
 // Products

@@ -1,7 +1,7 @@
 import { productService } from '@/lib/services/productService'
 import { updateService } from '@/lib/services/updateService'
 import { galleryService } from '@/lib/services/galleryService'
-import { Product, Update, Gallery } from '@/lib/api'
+import { Product, Update, Gallery, resolveImageUrl } from '@/lib/api'
 import Image from 'next/image'
 import Link from 'next/link'
 import SubscribeForm from '@/app/components/SubscribeForm'
@@ -54,7 +54,7 @@ export default async function Home() {
                 className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-yellow-400 transition-all hover:-translate-y-1 hover:shadow-xl shadow-sm">
                 <div className="relative h-52 w-full overflow-hidden bg-gray-100">
                   {p.image_url ? (
-                    <Image src={p.image_url} alt={p.name} fill
+                    <Image src={resolveImageUrl(p.image_url)} alt={p.name} fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-4xl">🎭</div>
@@ -103,7 +103,7 @@ export default async function Home() {
                   className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-yellow-400 hover:shadow-lg transition-all hover:-translate-y-1 shadow-sm">
                   {u.image_url && (
                     <div className="relative h-44 w-full overflow-hidden bg-gray-100">
-                      <Image src={u.image_url} alt={u.title} fill
+                      <Image src={resolveImageUrl(u.image_url)} alt={u.title} fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500" />
                     </div>
                   )}
@@ -133,7 +133,7 @@ export default async function Home() {
             {gallery.slice(0, 8).map((g, i) => (
               <div key={g.id}
                 className={`relative rounded-xl overflow-hidden group shadow-sm ${i === 0 ? 'col-span-2 row-span-2 h-80' : 'h-36'}`}>
-                <Image src={g.image_url} alt="Gallery" fill
+                <Image src={resolveImageUrl(g.image_url)} alt="Gallery" fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500" />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition" />
               </div>
