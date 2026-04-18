@@ -9,6 +9,10 @@ const geist = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
 export const metadata: Metadata = {
   title: 'Megafun Amusements',
   description: 'Manufacturers of 3D/5D/7D Theaters, VR Simulators and Amusement Park Attractions',
+  icons: {
+    icon: '/megafunlogo-removebg-preview.png',
+    apple: '/megafunlogo-removebg-preview.png',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
